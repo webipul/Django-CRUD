@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahasiswa</title>
+</head>
+<body>
+    <ol>
+        <li>
+            <a href="{% url 'mahasiswa:tambah' %}">Tambah</a>
+        </li>
+    </ol>
+
+    <table border="1">
+        <tr>
+            <th>Nama Mahasiswa</th>
+            <th>NIM</th>
+            <th>Foto</th>
+        </tr>
+        {% for mahasiswa in object_list %}
+        <tr>
+            <td><a href="{% url 'mahasiswa:detail' mahasiswa.id %}">{{ mahasiswa.nama }} </a> | <a href="{% url 'mahasiswa:ubah' mahasiswa.id %}">Edit</a> | <a href="{% url 'mahasiswa:hapus' mahasiswa.id %}">Hapus</a></td>
+            <td>{{ mahasiswa.nim }}</td>
+            <td><img height="50px" width="50px" src="{{ mahasiswa.foto.url }}" alt=""></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
